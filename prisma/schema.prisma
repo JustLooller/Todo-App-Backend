@@ -14,6 +14,8 @@ model Todo {
   Body             String?   @db.Text
   Create_Time      DateTime? @db.DateTime(0)
   Last_Update_Time DateTime? @db.DateTime(0)
+  Status           Int?      @default(0) @db.TinyInt
+  InRecycleBin     Int?      @default(0) @db.TinyInt
   Users            Users?    @relation(fields: [User_ID], references: [User_ID], onDelete: Cascade, onUpdate: NoAction, map: "Todo_ibfk_1")
 
   @@index([User_ID], map: "User_ID")
