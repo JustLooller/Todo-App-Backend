@@ -116,3 +116,31 @@ export async function GetTodos(user_id:number): Promise<Todo[] | null> {
     }
     return null;
 }
+export async function MoveTodoToBin(todo_Id: number): Promise<number>{
+    try {
+        const result = await prisma.$executeRaw`UPDATE Todo SET InRecycleBin=1 WHERE Todo_ID=${todo_Id}`;
+        return result===1 ? 1 : -1;
+    } catch (err) {
+        console.log(err);
+    }
+    return -1;
+}
+export async function MarkAsDone(todo_Id: number): Promise<boolean>{
+    try{
+        const result= await prisma.$executeRaw`UPDATE Todo SET Status=1 WHERE Todo_ID=${todo_Id}`
+        return result ===1
+    } catch (err) {
+        console.log(err);
+    }
+    return false;
+}
+export async function RecoverFromBin(todo_Id:number):Promise<boolean>{
+    try {
+        const result = await prisma.$executeRaw`UPDATE Todo SET InRecycleBin=0 WHERE Todo_ID=${todo_Id}`;
+        return result ===1;
+    } catch (err) {
+        console.log(err);
+    }
+    return false;
+}
+

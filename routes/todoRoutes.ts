@@ -18,5 +18,8 @@ export class TodoRoutes{
         this.router.post('/add', this.authController.verifyJwt, this.todoController.AddTodo);
         this.router.post('/delete', this.authController.verifyJwt, this.todoController.DeleteTodo);
         this.router.post('/update', this.authController.verifyJwt, this.todoController.UpdateTodo);
+        this.router.post('/moveToBin', this.authController.verifyJwt, this.todoController.MoveToBin);
+        this.router.post('/recoverFromBin', this.authController.verifyJwt, this.todoController.RecoverFromBin);
+        this.router.post('/markAsDone', this.authController.verifyJwt, this.todoController.MarkAsDone);
     }
 }
