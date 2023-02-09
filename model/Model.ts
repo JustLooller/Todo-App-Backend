@@ -50,12 +50,12 @@ export async function register(usernametoRegister:string, passwordtoRegister:str
     }
     return -1;
 }
-export async function AddTodo(title: string, user_Id:number, body?:string) : Promise<number>{
+export async function AddTodo(title: string, username:string, body?:string) : Promise<number>{
 
     try{
         const result= await prisma.todo.create({
             data:{
-                User_ID:user_Id,
+                Username:username,
                 Title:title,
                 Body:body,
                 Create_Time: new Date(),
@@ -102,12 +102,12 @@ export async function UpdateTodo(todo_Id : number, title?:string, body?:string) 
     return -1;
 
 }
-export async function GetTodos(user_id:number): Promise<Todo[] | null> {
+export async function GetTodos(username:string): Promise<Todo[] | null> {
 
     try {
         const result= await prisma.todo.findMany({
             where:{
-                User_ID:user_id
+                Username:username
             }
         })
         return result ? result : null;

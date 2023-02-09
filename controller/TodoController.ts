@@ -4,7 +4,7 @@ import {AddTodo, DeleteTodo, UpdateTodo, GetTodos, MoveTodoToBin, RecoverFromBin
 export class TodoController{
 
     public async AddTodo(req:Request, res: Response){
-        const result= await AddTodo(req.body.title, req.body.user_Id, req.body.body);
+        const result= await AddTodo(req.body.title, req.body.username, req.body.body);
         if(result === 1)
             return res.status(200).send({status:'success', message: 'Todo successfully added'});
         else 
@@ -23,7 +23,7 @@ export class TodoController{
         return res.send({status:'error', message: 'Something went wrong while updating todos, try again'});
     }
     public async GetTodos(req:Request, res: Response){
-        const result= await GetTodos(req.body.user_id);
+        const result= await GetTodos(req.body.username);
         if(typeof result !== null)
             return res.status(200).send(result);
         return res.send({status:'error', message: 'Something went wrong while retrieving todos, try again'});
