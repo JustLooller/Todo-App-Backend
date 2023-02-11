@@ -13,11 +13,13 @@ export class AuthController{
         try {
             const token=authorization?.split(' ')[1];
             if(typeof token !== undefined){
-                const payload= jwt.verify(token as string, process.env.JWT_SECRET_KEY as string);
+                const payload= jwt.verify(token as string, process.env.JWT_SECRET_KEY || "backendchallenge" as string);
+                if(!!payload)
+                    return next();
             }
         } catch (err) {
             res.status(401);
         }
-        return next();
+        res.status(401).send({status: 'error', message: 'unauthorized'});
     }
 }

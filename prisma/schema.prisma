@@ -9,20 +9,20 @@ datasource db {
 
 model Todo {
   Todo_ID          Int       @id @default(autoincrement())
-  Username         String?
-  Title            String?   @db.VarChar(255)
-  Body             String?   @db.Text
+  Username         String    @db.VarChar(255)
+  Title            String    @db.VarChar(255)
+  Body             String?   @db.VarChar(255)
   Create_Time      DateTime? @db.DateTime(0)
   Last_Update_Time DateTime? @db.DateTime(0)
-  Status           Int?      @default(0) @db.TinyInt
-  InRecycleBin     Int?      @default(0) @db.TinyInt
-  Users            Users?    @relation(fields: [Username], references: [Username], onDelete: Cascade, onUpdate: Cascade, map: "Todo_ibfk_1")
+  Status           Boolean?
+  InRecycleBin     Boolean?
+  Users            Users     @relation(fields: [Username], references: [Username], onDelete: Cascade, onUpdate: NoAction, map: "Todo_ibfk_1")
 
   @@index([Username], map: "Username")
 }
 
 model Users {
-  Username String @id @unique(map: "Username") @db.VarChar(255)
+  Username String @id @db.VarChar(255)
   Password String @db.VarChar(255)
   Todo     Todo[]
 }
