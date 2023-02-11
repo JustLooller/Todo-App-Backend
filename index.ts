@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { UserRoutes } from "./routes/userRoutes";
 import { TodoRoutes } from "./routes/todoRoutes";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./utils/swagger";
 
 dotenv.config();
 
@@ -30,11 +32,13 @@ class Server {
       })
     );
     this.app.use(cookieParser());
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   }
 
   public start(): void {
     this.app.listen(this.app.get("port"), () => {
-      console.log("Server running on port" + this.app.get("port"));
+      console.log("Server running on port " + this.app.get("port"));
+      console.log(`Docs available at http://localhost:${this.app.get("port")}/docs`);
     });
   }
 }
