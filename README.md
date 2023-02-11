@@ -1,1 +1,1 @@
-![ER%20Diagram](./public/ER%20todo.svg)
+![ER_Diagram](./public/ER%20todo.png)
