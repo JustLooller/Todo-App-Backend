@@ -32,13 +32,15 @@ class Server {
       })
     );
     this.app.use(cookieParser());
-    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    this.app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   }
 
   public start(): void {
     this.app.listen(this.app.get("port"), () => {
       console.log("Server running on port " + this.app.get("port"));
-      console.log(`Docs available at http://localhost:${this.app.get("port")}/docs`);
+      console.log(
+        `Docs available at http://localhost:${this.app.get("port")}/docs`
+      );
     });
   }
 }

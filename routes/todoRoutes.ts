@@ -14,13 +14,13 @@ export class TodoRoutes{
     }
     
     routes(){
-        this.router.post('/all', this.authController.verifyJwt,this.todoController.GetTodos);
+        this.router.get('/all', this.authController.verifyJwt,this.todoController.GetTodos);
         this.router.post('/add', this.authController.verifyJwt, this.todoController.AddTodo);
         this.router.post('/delete', this.authController.verifyJwt, this.todoController.DeleteTodo);
         this.router.post('/update', this.authController.verifyJwt, this.todoController.UpdateTodo);
         this.router.post('/moveToBin', this.authController.verifyJwt, this.todoController.MoveToBin);
         this.router.post('/recoverFromBin', this.authController.verifyJwt, this.todoController.RecoverFromBin);
         this.router.post('/markAsDone', this.authController.verifyJwt, this.todoController.MarkAsDone);
-        this.router.post('/getFromBin', this.authController.verifyJwt, this.todoController.GetAllFromBin);
+        this.router.get('/getFromBin', this.authController.verifyJwt, this.todoController.GetAllFromBin);
     }
 }
