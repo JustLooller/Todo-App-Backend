@@ -7,7 +7,7 @@ export class UserController {
     const result = await register(req.body.username, req.body.password);
     if (result === -1)
       return res
-        .status(401)
+        .status(409)
         .send({ status: "error", message: "User already registered" });
 
     return res

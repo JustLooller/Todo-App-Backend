@@ -2,10 +2,11 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
+import swaggerUi from 'swagger-ui-express'
+import { swaggerSpec } from "./utils/swagger";
 import { UserRoutes } from "./routes/userRoutes";
 import { TodoRoutes } from "./routes/todoRoutes";
-import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./utils/swagger";
+
 
 dotenv.config();
 

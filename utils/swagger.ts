@@ -1,29 +1,26 @@
-import swaggerjsdoc from "swagger-jsdoc";
+import swaggerJsdoc from "swagger-jsdoc";
 import { version } from "../package.json";
 
-const options: swaggerjsdoc.Options = {
+const options: swaggerJsdoc.Options = {
   definition: {
     openapi: "3.0.0",
     info: {
       title: "Toduba Challenge API Documentation",
       version,
     },
+    schemes: ["http"],
     components: {
-      securitySchemas: {
-        bearerAuth: {
+      securitySchemes: {
+        BearerAuthentication: {
           type: "http",
+          description: "Provide a valid JWT Token in order to use this API",
           scheme: "bearer",
-          bearerFormat: "jwt",
+          bearerFormat: "JWT",
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
   apis: ["./routes/*.ts"],
 };
 
-export const swaggerSpec = swaggerjsdoc(options);
+export const swaggerSpec = swaggerJsdoc(options);
